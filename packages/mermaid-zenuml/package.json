@@ -36,7 +36,7 @@
     "@zenuml/core": "^3.47.9"
   },
   "devDependencies": {
-    "mermaid": "workspace:^"
+    "mermaid": "workspace:@niuchart/mermaid-engine@^"
   },
   "peerDependencies": {
     "mermaid": "^10 || ^11"

@@ -179,3 +179,4 @@ yaxis
 yfunc
 yytext
 zenuml
+niuchart

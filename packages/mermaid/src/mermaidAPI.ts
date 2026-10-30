@@ -31,6 +31,7 @@ import errorRenderer from './diagrams/error/errorRenderer.js';
 import { attachFunctions } from './interactionDb.js';
 import { log, setLogLevel } from './logger.js';
 import { profiler } from './profiler.js';
+import { notifyParsedDiagram } from './renderGuard.js';
 import { preprocessDiagram } from './preprocess.js';
 import getStyles, { cssStyleSheetToString } from './styles.js';
 import theme from './themes/index.js';
@@ -564,6 +565,10 @@ const render = async function (
     parseEncounteredException = error;
   }
 
+  if (!parseEncounteredException) {
+    notifyParsedDiagram(diag, id);
+  }
+
   // Get the temporary div element containing the svg
   const element = root.select<HTMLDivElement>(enclosingDivID_selector).node()!;
   const diagramType = diag.type;
@@ -579,7 +584,7 @@ const render = async function (
   const rules = createUserStyles(config, diagramType, diagramClassDefs, idSelector);
 
   const style1 = document.createElement('style');
-  style1.innerHTML = rules;
+  style1.textContent = rules.replace(/</g, '\\3c ');
   svg.insertBefore(style1, firstChild);
 
   // -------------------------------------------------------------------------------

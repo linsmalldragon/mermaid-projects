@@ -13,11 +13,6 @@ overrides:
   js-yaml@<3.15.0: 3.15.0
   minimatch@10: ^10.2.6
 
-patchedDependencies:
-  roughjs:
-    hash: 3543d47108cb41b68ec6a671c0e1f9d0cfe2ce524fea5b0992511ae84c3c6b64
-    path: patches/roughjs.patch
-
 importers:
 
   .:
@@ -263,7 +258,7 @@ importers:
   packages/examples:
     devDependencies:
       mermaid:
-        specifier: workspace:*
+        specifier: workspace:@niuchart/mermaid-engine@*
         version: link:../mermaid
 
   packages/mermaid:
@@ -324,7 +319,7 @@ importers:
         version: 16.3.0
       roughjs:
         specifier: ^4.6.6
-        version: 4.6.6(patch_hash=3543d47108cb41b68ec6a671c0e1f9d0cfe2ce524fea5b0992511ae84c3c6b64)
+        version: 4.6.6
       stylis:
         specifier: ^4.3.6
         version: 4.3.6
@@ -469,7 +464,7 @@ importers:
         specifier: ^9.2.4
         version: 9.2.4
       mermaid:
-        specifier: workspace:*
+        specifier: workspace:@niuchart/mermaid-engine@*
         version: link:../mermaid
       rimraf:
         specifier: ^6.0.1
@@ -488,7 +483,7 @@ importers:
         specifier: ^7.4.3
         version: 7.4.3
       mermaid:
-        specifier: workspace:^
+        specifier: workspace:@niuchart/mermaid-engine@^
         version: link:../mermaid
 
   packages/mermaid-layout-tidy-tree:
@@ -501,7 +496,7 @@ importers:
         specifier: ^7.4.3
         version: 7.4.3
       mermaid:
-        specifier: workspace:^
+        specifier: workspace:@niuchart/mermaid-engine@^
         version: link:../mermaid
       non-layered-tidy-tree-layout:
         specifier: ^2.0.2
@@ -516,7 +511,7 @@ importers:
         version: 3.49.2(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)
     devDependencies:
       mermaid:
-        specifier: workspace:^
+        specifier: workspace:@niuchart/mermaid-engine@^
         version: link:../mermaid
 
   packages/mermaid/src/docs:
@@ -537,7 +532,7 @@ importers:
         specifier: ^2.4.2
         version: 2.5.1
       mermaid:
-        specifier: workspace:^
+        specifier: workspace:@niuchart/mermaid-engine@^
         version: link:../..
       vue:
         specifier: ^3.5.40
@@ -613,7 +608,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/mermaid-example-diagram
       mermaid:
-        specifier: workspace:*
+        specifier: workspace:@niuchart/mermaid-engine@*
         version: link:../../packages/mermaid
     devDependencies:
       webpack:
@@ -20436,7 +20431,7 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.60.1
       fsevents: 2.3.3
 
-  roughjs@4.6.6(patch_hash=3543d47108cb41b68ec6a671c0e1f9d0cfe2ce524fea5b0992511ae84c3c6b64):
+  roughjs@4.6.6:
     dependencies:
       hachure-fill: 0.5.2
       path-data-parser: 0.1.0

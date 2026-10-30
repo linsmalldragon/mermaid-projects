@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/d3": "^7.4.3",
-    "mermaid": "workspace:^"
+    "mermaid": "workspace:@niuchart/mermaid-engine@^"
   },
   "peerDependencies": {
     "mermaid": "^11.0.2"
