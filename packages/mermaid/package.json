@@ -135,7 +135,9 @@
     "vitepress-plugin-search": "1.0.4-alpha.22"
   },
   "files": [
-    "dist/",
+    "dist/**/*.js",
+    "dist/**/*.mjs",
+    "dist/**/*.d.ts",
     "README.md",
     "LICENSE"
   ],
