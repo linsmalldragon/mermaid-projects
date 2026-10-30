@@ -1,4 +1,6 @@
 minimumReleaseAge: 4320 # 4320 minutes = 3 days
+networkConcurrency: 8
+fetchTimeout: 600000
 packages:
   - 'packages/*'
   - 'packages/mermaid/src/docs'

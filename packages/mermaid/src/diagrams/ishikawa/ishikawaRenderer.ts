@@ -7,10 +7,10 @@ import { configureSvgSize } from '../../setupGraphViewbox.js';
 import { parseFontSize } from '../../utils.js';
 import type { IshikawaDB } from './ishikawaDb.js';
 import type { IshikawaNode } from './ishikawaTypes.js';
-import rough from 'roughjs';
+import { createRoughSvg } from '../../rendering-util/roughInterop.js';
 
 interface RoughContext {
-  roughSvg: ReturnType<typeof rough.svg>;
+  roughSvg: ReturnType<typeof createRoughSvg>;
   seed: number;
   lineColor: string;
   fillColor: string;
@@ -51,7 +51,7 @@ const draw: DrawDefinition = (_text, id, _version, diagram: Diagram) => {
   const svg = selectSvgElement(id);
   const g = svg.append('g').attr('class', 'ishikawa');
 
-  const roughSvg = isHandDrawn ? rough.svg(svg.node()!) : undefined;
+  const roughSvg = isHandDrawn ? createRoughSvg(svg.node()!) : undefined;
   const roughContext: RoughContext | undefined = roughSvg
     ? {
         roughSvg,

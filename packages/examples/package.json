@@ -26,7 +26,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "mermaid": "workspace:*"
+    "mermaid": "workspace:@niuchart/mermaid-engine@*"
   },
   "publishConfig": {
     "access": "public"

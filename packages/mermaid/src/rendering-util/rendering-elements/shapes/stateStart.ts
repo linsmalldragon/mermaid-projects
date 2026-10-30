@@ -47,11 +47,10 @@ export function stateStart<T extends SVGGraphicsElement>(
     // @ts-ignore TODO: Fix typings
     circle = shapeSvg.insert(() => roughNode);
     // center the circle around its coordinate
-    circle
-      .attr('class', 'state-start')
-      .attr('r', (node.width ?? 7) / 2)
-      .attr('width', node.width ?? 14)
-      .attr('height', node.height ?? 14);
+    circle.attr('class', 'state-start');
+    circle.attr('r', (node.width ?? 7) / 2);
+    circle.attr('width', node.width ?? 14);
+    circle.attr('height', node.height ?? 14);
   } else {
     circle = shapeSvg.insert('circle', ':first-child');
     // center the circle around its coordinate

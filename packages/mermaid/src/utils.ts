@@ -30,6 +30,7 @@ import { detectType } from './diagram-api/detectType.js';
 import assignWithDepth from './assignWithDepth.js';
 import type { MermaidConfig } from './config.type.js';
 import { memoize, merge } from 'es-toolkit/compat';
+import { notifyTextMeasurement } from './renderGuard.js';
 import { directiveRegex } from './diagram-api/regexes.js';
 import type { D3Element, Point, TextDimensionConfig, TextDimensions } from './types.js';
 
@@ -687,6 +688,7 @@ export const calculateTextDimensions: (
   config: TextDimensionConfig
 ) => TextDimensions = memoize(
   (text: string, config: TextDimensionConfig): TextDimensions => {
+    notifyTextMeasurement(text);
     const { fontSize = 12, fontFamily = 'Arial', fontWeight = 400 } = config;
     if (!text) {
       return { width: 0, height: 0 };

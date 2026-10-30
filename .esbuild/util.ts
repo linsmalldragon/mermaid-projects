@@ -81,7 +81,7 @@ export const getBuildConfig = (options: MermaidBuildOptions): BuildOptions => {
 
   const external: string[] = ['require', 'fs', 'path'];
   const outFileName = getFileName(name, options);
-  const { dependencies, version } = JSON.parse(
+  const { dependencies, version, upstreamVersion } = JSON.parse(
     readFileSync(resolve(__dirname, `../packages/${packageName}/package.json`), 'utf-8')
   );
   const output: BuildOptions = buildOptions({
@@ -97,7 +97,7 @@ export const getBuildConfig = (options: MermaidBuildOptions): BuildOptions => {
       // This needs to be stringified for esbuild
       'injected.includeLargeFeatures': `${includeLargeFeatures}`,
       'injected.profiling': `${profiling}`,
-      'injected.version': `'${version}'`,
+      'injected.version': `'${upstreamVersion ?? version}'`,
       'import.meta.vitest': 'undefined',
     },
   });

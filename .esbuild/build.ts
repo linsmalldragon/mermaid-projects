@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import { cp, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { cp, mkdir, rename, writeFile } from 'node:fs/promises';
 import { packageOptions } from '../.build/common.js';
 import { generateLangium } from '../.build/generateLangium.js';
 import type { MermaidBuildOptions } from './util.js';
@@ -60,7 +60,9 @@ const buildPackage = async (entryName: keyof typeof packageOptions) => {
     );
   }
 
-  const results = await Promise.all(buildConfigs.map((option) => build(getBuildConfig(option))));
+  // Preserve every output format while bounding peak memory on shared build hosts.
+  const results = [];
+  for (const option of buildConfigs) results.push(await build(getBuildConfig(option)));
 
   if (shouldVisualize) {
     for (const { metafile } of results) {
@@ -87,12 +89,7 @@ const buildTinyMermaid = async () => {
     './packages/mermaid/dist/mermaid.tiny.min.js',
     './packages/tiny/dist/mermaid.tiny.js'
   );
-  // Copy version from mermaid's package.json to tiny's package.json
-  const mermaidPkg = JSON.parse(await readFile('./packages/mermaid/package.json', 'utf8'));
-  const tinyPkg = JSON.parse(await readFile('./packages/tiny/package.json', 'utf8'));
-  tinyPkg.version = mermaidPkg.version;
-
-  await writeFile('./packages/tiny/package.json', JSON.stringify(tinyPkg, null, 2) + '\n');
+  // Versions belong to source release changes, not a build of the private engine.
   await cp('./packages/mermaid/CHANGELOG.md', './packages/tiny/CHANGELOG.md');
 };
 

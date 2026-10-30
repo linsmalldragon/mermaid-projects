@@ -10,7 +10,7 @@ import { getConfig } from '../../config.js';
 import { selectSvgElement } from '../../rendering-util/selectSvgElement.js';
 import * as venn from '@upsetjs/venn.js';
 import { configureSvgSize } from '../../setupGraphViewbox.js';
-import rough from 'roughjs';
+import { createRoughSvg } from '../../rendering-util/roughInterop.js';
 
 type DummyD3Root = Selection<HTMLDivElement, unknown, null, undefined>;
 
@@ -95,7 +95,7 @@ export const draw: DrawDefinition = (
   dummyD3root.datum(renderSets).call(vennDiagram as never);
 
   const roughSvg = isHandDrawn
-    ? rough.svg(dummyD3root.select('svg').node() as SVGSVGElement)
+    ? createRoughSvg(dummyD3root.select('svg').node() as SVGSVGElement)
     : undefined;
 
   // Compute layout areas so we can position additional text nodes

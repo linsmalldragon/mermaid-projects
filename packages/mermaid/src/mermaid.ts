@@ -487,3 +487,4 @@ const mermaid: Mermaid = {
 };
 
 export default mermaid;
+export type { MermaidRenderGuard } from './renderGuard.js';

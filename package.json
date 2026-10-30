@@ -30,13 +30,13 @@
     "swimlanes:size:baseline": "tsx scripts/swimlanes-size.ts --write-baseline",
     "swimlanes:size:compare": "tsx scripts/swimlanes-size.ts --compare",
     "swimlanes:size:check": "tsx scripts/swimlanes-size.ts --compare --fail-on-growth",
-    "build:types": "pnpm --filter mermaid types:build-config && tsx .build/types.ts",
+    "build:types": "pnpm --filter @niuchart/mermaid-engine types:build-config && tsx .build/types.ts",
     "build:types:watch": "tsc -p ./packages/mermaid/tsconfig.json --emitDeclarationOnly --watch",
     "dev": "tsx .esbuild/server.ts",
     "dev:vite": "tsx .vite/server.ts",
     "dev:coverage": "pnpm coverage:e2e:clean && pnpm dev:vite",
     "copy-readme": "cpy './README.*' ./packages/mermaid/ --cwd=.",
-    "changeset:version": "changeset version && pnpm build && pnpm --filter mermaid run docs:release-version && pnpm --filter mermaid run docs:build && git add --all",
+    "changeset:version": "changeset version && pnpm build && pnpm --filter @niuchart/mermaid-engine run docs:release-version && pnpm --filter @niuchart/mermaid-engine run docs:build && git add --all",
     "changeset:publish": "pnpm copy-readme && changeset publish",
     "lint": "eslint --quiet --stats --cache --cache-strategy content . && pnpm lint:jison && prettier --cache --check .",
     "lint:fix": "eslint --cache --cache-strategy content --fix . && prettier --write . && tsx scripts/fixCSpell.ts",
@@ -64,11 +64,12 @@
     "test:coverage": "vitest --coverage",
     "test:check:tsc": "tsx scripts/tsc-check.ts",
     "prepare": "husky && pnpm build",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "projects:verify": "vitest run packages/mermaid/src/renderGuard.spec.ts && tsc -p packages/mermaid/tsconfig.json --noEmit"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mermaid-js/mermaid"
+    "url": "https://github.com/linsmalldragon/mermaid-projects"
   },
   "author": "Knut Sveidqvist",
   "license": "MIT",
@@ -175,9 +176,6 @@
       "dompurify": "3.4.12",
       "js-yaml@<3.15.0": "3.15.0",
       "minimatch@10": "^10.2.6"
-    },
-    "patchedDependencies": {
-      "roughjs": "patches/roughjs.patch"
     },
     "onlyBuiltDependencies": [
       "canvas",
