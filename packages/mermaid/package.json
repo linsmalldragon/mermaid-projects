@@ -54,7 +54,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mermaid-js/mermaid"
+    "url": "https://github.com/linsmalldragon/mermaid-projects",
+    "directory": "packages/mermaid"
   },
   "author": "Knut Sveidqvist",
   "license": "MIT",
